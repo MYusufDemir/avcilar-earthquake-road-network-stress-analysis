@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Avcılar Earthquake Road Network Stress Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            color: #222;
+            margin: 30px;
+            line-height: 1.62;
+        }
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            background: white;
+            padding: 34px;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.12);
+        }
+        h1 {
+            color: #111827;
+            border-bottom: 3px solid #111827;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #1f2937;
+            margin-top: 32px;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 6px;
+        }
+        h3 {
+            color: #374151;
+            margin-top: 22px;
+        }
+        .note {
+            background-color: #fff7ed;
+            border-left: 5px solid #f97316;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .method {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        .button-row {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+        .button {
+            display: inline-block;
+            padding: 14px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            color: white;
+            background: #2563eb;
+        }
+        .button.t1 {
+            background: #059669;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f3f4f6;
+        }
+        code {
+            background-color: #f3f4f6;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+        .signature {
+            margin-top: 36px;
+            padding-top: 18px;
+            border-top: 1px solid #ddd;
+            font-size: 14px;
+            color: #374151;
+            text-align: right;
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+<h1>Road Network Stress Analysis of Avcılar Under a Major Earthquake Scenario</h1>
+
+<p>
+This study presents a scenario-based road network stress analysis for the Avcılar district under a major earthquake scenario.
+It investigates which road segments may be exposed to closure risk, which remaining open roads may experience increased network stress,
+and how the road network may partially recover during the first hours after the event.
+</p>
+
+<div class="note">
+<strong>Important note:</strong> This study does not provide deterministic damage or road closure predictions.
+The results should be interpreted as relative risk and stress indicators produced under the adopted datasets, assumptions,
+and modeling framework.
+</div>
+
+<h2>1. Interactive Maps</h2>
+
+<p>
+The interactive maps are provided as separate pages to improve loading performance. The T0 map represents the immediate
+post-earthquake condition, while the T1 map represents the partial recovery stage after the first 4–5 hours of intervention.
+</p>
+
+<div class="button-row">
+    <a class="button" href="Avcilar_T0_Immediate_Post_Earthquake_Map.html" target="_blank">Open T0 Map</a>
+    <a class="button t1" href="Avcilar_T1_First_4_5_Hours_Map.html" target="_blank">Open T1 Map</a>
+</div>
+
+<h2>2. Methodological Overview</h2>
+
+<div class="method">
+<h3>2.1 Road network data</h3>
+<p>
+The vehicle road network of Avcılar was obtained from OpenStreetMap using a drive-network approach. Therefore, the analysis includes
+not only major arterial roads, but also local streets, service roads, ramps, connectors, and other vehicle-accessible road segments.
+The road network was converted into a graph structure, allowing the analysis of connectivity, closures, and centrality-based stress patterns.
+</p>
+</div>
+
+<div class="method">
+<h3>2.2 Building-related neighborhood risk</h3>
+<p>
+Neighborhood-level building data were used to estimate a building-related risk layer. The building stock was classified using age and floor-count indicators.
+The age-related structure included pre-1980 buildings, buildings constructed between 1980 and 2000, and post-2000 buildings.
+Older building ratios were treated as stronger contributors to potential earthquake-related disruption, while post-2000 buildings were used to complete
+the age distribution of the building stock.
+</p>
+<p>
+High-rise building influence was also included by separating low-rise buildings from higher floor-count categories. The resulting
+<code>building_impact_risk</code> score represents a relative neighborhood-level proxy for potential building or debris-related road disruption.
+</p>
+</div>
+
+<div class="method">
+<h3>2.3 Road-type vulnerability</h3>
+<p>
+Road-type vulnerability was assigned based on the functional hierarchy of roads. Major roads such as motorway, trunk, primary, and secondary roads
+were assumed to be less vulnerable and more likely to receive earlier intervention. Residential, service, and living-street segments were treated as
+more vulnerable due to their local character and potentially lower intervention priority.
+</p>
+</div>
+
+<div class="method">
+<h3>2.4 Closure risk model</h3>
+<p>
+For each road segment, an earthquake-related closure risk score was calculated using building-related risk, road-type vulnerability, and normalized road length:
+</p>
+<p>
+<code>earthquake_closure_risk = 0.50 × building_impact_risk + 0.35 × road_type_vulnerability + 0.15 × length_norm</code>
+</p>
+<p>
+This score was then used to define the road segments assumed to be closed in the T0 scenario.
+</p>
+</div>
+
+<h2>3. T0 Scenario: Immediate Post-Earthquake Condition</h2>
+
+<p>
+The T0 scenario represents the immediate impact period following the earthquake. In this map, black roads indicate road segments assumed to be closed
+under the scenario. After removing these segments from the network, centrality values were recalculated for the remaining open roads.
+Roads whose centrality increased after closures were interpreted as stress corridors, since they became more important for maintaining network connectivity.
+</p>
+
+<p>
+In the T0 map, orange segments represent main stress corridors, purple segments represent candidate local bottlenecks, and green segments represent
+critical backbone roads that remain open despite not being classified as stress or bottleneck segments.
+</p>
+
+<h2>4. T1 Scenario: First 4–5 Hours After the Earthquake</h2>
+
+<p>
+The T1 scenario represents the first 4–5 hours after the earthquake, when partial intervention and road clearance may have started.
+Rather than treating T1 as an independent closure scenario, T1 was modeled as a continuation of T0. In other words, roads that remain closed in T1
+were selected from the roads already closed in T0.
+</p>
+
+<p>
+The T1 reopening logic considered road hierarchy, baseline network centrality, and lower building-related risk. Major and more central roads were assumed
+to have higher reopening priority, while roads with higher closure risk and lower reopening priority were more likely to remain closed.
+</p>
+
+<h2>5. Interpretation of Map Colors</h2>
+
+<table>
+<tr><th>Color</th><th>Meaning</th><th>Interpretation</th></tr>
+<tr><td><strong>Black</strong></td><td>Roads assumed to be closed</td><td>Segments removed from the network under the scenario.</td></tr>
+<tr><td><strong>Orange</strong></td><td>Main stress corridors</td><td>Open roads whose centrality increased after closures.</td></tr>
+<tr><td><strong>Purple</strong></td><td>Candidate local bottlenecks</td><td>Short but potentially critical local links with increased importance.</td></tr>
+<tr><td><strong>Green</strong></td><td>Critical open backbone roads</td><td>Initially important roads that remain open and are not classified as stress or bottleneck segments.</td></tr>
+<tr><td><strong>Gray</strong></td><td>Background road network</td><td>Shown through the base map. Not all gray roads are analytical outputs.</td></tr>
+</table>
+
+<h2>6. Use of the Outputs</h2>
+
+<p>
+The outputs can be used as a decision-support layer for post-earthquake transportation planning. The maps help identify potential closure-prone segments,
+open roads likely to experience increased load, local bottleneck candidates, and critical backbone roads that remain available under the scenario.
+</p>
+
+<p>
+The analysis is most useful for asking relative and operational questions such as:
+</p>
+
+<ul>
+    <li>Which roads stand out in terms of closure risk or structural vulnerability?</li>
+    <li>Which open roads may carry additional network stress after disruptions?</li>
+    <li>Which local links may become bottlenecks?</li>
+    <li>Which open roads continue to serve as critical network backbone segments?</li>
+    <li>How does the network change from T0 to T1?</li>
+</ul>
+
+<div class="note">
+The maps should not be interpreted as definitive lists of safe or closed roads. They are scenario-based indicators derived from the selected data,
+filters, and assumptions.
+</div>
+
+<div class="signature">
+    <div style="font-size: 13px; color: #6b7280; margin-bottom: 4px;">Prepared by</div>
+    <strong>Muhammet Yusuf Demir</strong><br>
+    Istanbul Technical University<br>
+    Industrial Engineering
+</div>
+
+</div>
+</body>
+</html>
