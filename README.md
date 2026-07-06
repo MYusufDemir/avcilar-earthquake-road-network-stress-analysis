@@ -48,7 +48,7 @@ This analysis is not a deterministic damage or road closure prediction. It does 
 
 The full analysis workflow is provided in the notebook:
 
-`avcilar_earthquake_road_network_stress_analysis.ipynb`
+[avcilar_earthquake_road_network_stress_analysis.ipynb](./avcilar_earthquake_road_network_stress_analysis.ipynb)
 
 The notebook includes data cleaning, building-related risk score construction, OpenStreetMap road network extraction, road-type vulnerability assignment, T0 and T1 scenario modeling, centrality-based stress analysis, and interactive map generation.
 
