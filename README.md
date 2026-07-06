@@ -44,6 +44,16 @@ The closure-risk model combines building-related neighborhood risk, road-type vu
 
 This analysis is not a deterministic damage or road closure prediction. It does not include real-time traffic volumes, observed earthquake damage, detailed structural vulnerability of bridges or viaducts, emergency response team locations, or actual operational road-clearing constraints. The outputs should be interpreted as relative risk and stress indicators under the adopted assumptions.
 
+## Reproducibility
+
+The full analysis workflow is provided in the notebook:
+
+`avcilar_earthquake_road_network_stress_analysis.ipynb`
+
+The notebook includes data cleaning, building-related risk score construction, OpenStreetMap road network extraction, road-type vulnerability assignment, T0 and T1 scenario modeling, centrality-based stress analysis, and interactive map generation.
+
+The published GitHub Pages report contains the final interactive outputs, while the notebook documents the analytical process used to generate them.
+
 ## Prepared by
 
 **Muhammet Yusuf Demir**  
