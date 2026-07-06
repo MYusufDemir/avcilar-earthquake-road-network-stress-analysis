@@ -1,0 +1,11 @@
+pandas
+numpy
+geopandas
+osmnx
+networkx
+folium
+shapely
+matplotlib
+requests
+pymupdf
+branca
