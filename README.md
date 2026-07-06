@@ -54,6 +54,15 @@ The notebook includes data cleaning, building-related risk score construction, O
 
 The published GitHub Pages report contains the final interactive outputs, while the notebook documents the analytical process used to generate them.
 
+## How to Reproduce
+
+1. Clone this repository.
+2. Install the required Python packages listed in `requirements.txt`.
+3. Open `avcilar_earthquake_road_network_stress_analysis.ipynb`.
+4. Run the notebook cells sequentially.
+5. The notebook processes the input data, constructs the T0 and T1 scenarios, performs the network stress analysis, and generates the interactive HTML maps.
+6. Open `index.html` or publish the repository with GitHub Pages to view the final web-based report.
+
 ## Prepared by
 
 **Muhammet Yusuf Demir**  
